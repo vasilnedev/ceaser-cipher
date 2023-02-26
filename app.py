@@ -51,7 +51,7 @@ class KeyOutOfRange( Exception ):
   Procedure to handle encryption choice dialog and input validation
 """
 def choice_encrypt():
-  print( '\n\t### Encryption ###\n' )
+  print( '\n\t### ENCRYPTION ###\n' )
   try: # Generic error handling
     key = int( input( '\tPlease enter the key (0 to 26) to use.\n\t> ' ) )
     if key > 26 or key <0: # Validate the key value
@@ -66,7 +66,7 @@ def choice_encrypt():
   Procedure to handle decryption choice dialog and input validation
 """
 def choice_decrypt():
-  print( '\n\t### Decryption ###\n' )
+  print( '\n\t### DECRYPTION ###\n' )
   try: # Generic error handling
     key = int( input( '\tPlease enter the key (0 to 26) to use.\n\t> ' ) )
     if key > 26 or key <0: # Validate the key value
@@ -83,7 +83,7 @@ def choice_decrypt():
 """
 def choice_quit():
   global quit
-  print( '\n\t### CLOSEING OUT ###\n' )
+  print( '\n\t### CLOSEING OUT ###' )
   print( '\n\tThank you and good bye!\n' )
   quit = True
 
@@ -102,12 +102,11 @@ menu = {
 ####################
 # MAIN APP
 ####################
-
 quit = False # Initilise main app loop control value
 
-print( '########################' )
-print( '### Cesar Cipher App ###' )
-print( '########################' )
+print( '#######################' )
+print( '###  CEASER CIPHER  ###' )
+print( '#######################' )
 
 # Start main app loop
 while not quit:
