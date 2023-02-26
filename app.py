@@ -14,27 +14,27 @@
   shift_string procedure is not dealing with user input validation.
 """
 def shift_string( text:str , shift:int ):
-  alphabet = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ'
-  while shift >= len( alphabet ):
-    shift -= len( alphabet )
-  else:
-    res = '' # initialise empty string result
-    for char in text: # iterate over each character from the input text
-      index = alphabet.find( char.capitalize() ) # Find character in the alphabet 
-      if index > -1:
-        enc_index = index + shift
+  alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'
 
-        # Adjust the encouding index if greated than the alphabet length
-        while enc_index >= len( alphabet ):
-          enc_index -= len( alphabet )
-        # Adgust the encouding index if less than the negative alphabet length
-        while enc_index <= -len( alphabet ):
-          enc_index += len( alphabet )
+  def adjust_index( orig_index:int ):
+    adj_index = orig_index
+    # Adjust the encouding index if greated than the alphabet length
+    while adj_index >= len( alphabet ):
+      adj_index -= len( alphabet )
+    # Adgust the encouding index if less than the negative alphabet length
+    while adj_index <= -len( alphabet ):
+      adj_index += len( alphabet )
+    return adj_index
 
-        res += alphabet[ enc_index ]
-      else:
-        res += char # If char is not in the alphabet, keeps it unchanged
-    return res
+  res = '' # initialise empty string result
+  for char in text: # iterate over each character from the input text
+    index = alphabet.find( char.capitalize() ) # Find character in the alphabet 
+    if index > -1:
+      enc_index = adjust_index( index + shift )
+      res += alphabet[ enc_index ]
+    else:
+      res += char # If char is not in the alphabet, keeps it unchanged
+  return res
 
 """
   Define custom exception to catch key values out of range error
@@ -57,7 +57,7 @@ def choice_encrypt():
     if key > 26 or key <0: # Validate the key value
       raise KeyOutOfRange( key=key )
     msg = input( '\tEnter the message to encrypt.\n\t> ' )
-    print( f'\t{ shift_string( msg , key ) }' )
+    print( f'\t  { shift_string( msg , key ) }' )
   except Exception as e:
     print( '\tSorry, your input was not valid!' )
     print( f'\t{e}' ) # Print details of errors
@@ -73,7 +73,7 @@ def choice_decrypt():
       raise KeyOutOfRange( key=key )
     msg = input( '\tEnter the message to decrypt.\n\t> ' )
     # Decription is the opposite of encription, hence will use negative key value
-    print( f'\t{ shift_string( msg , -key ) }')
+    print( f'\t  { shift_string( msg , -key ) }')
   except Exception as e:
     print( '\tSorry, your input was not valid!' )
     print( f'\t{e}' ) # Print details of errors
@@ -83,8 +83,9 @@ def choice_decrypt():
 """
 def choice_quit():
   global quit
-  print( '\n\t### CLOSEING OUT ###' )
-  print( '\n\tThank you and good bye!\n' )
+  print( '\n###  CLOSEING OUT   ###' )
+  print( '#######################' )
+  print( '\nThank you and good bye!\n' )
   quit = True
 
 ##########################
@@ -106,7 +107,6 @@ quit = False # Initilise main app loop control value
 
 print( '#######################' )
 print( '###  CEASER CIPHER  ###' )
-print( '#######################' )
 
 # Start main app loop
 while not quit:
