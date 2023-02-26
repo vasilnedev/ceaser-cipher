@@ -1,9 +1,17 @@
 """
   Ceaser Cipher application
 
-  Generic 'shift_string' function will be used for both encryptin and decryption.
+  For details about the purpose of the app, please refer to README.md file
+"""
+
+##############################
+# GENERIC FUNCTIONS
+##############################
+"""
+  Generic 'shift_string' function will be used for both encryptin and decryption. For decrytpion 
+  will use the negative value of the key.
   The function can take any integer shift value - it will be adjusted to fit the alphabet length.
-  Hence shift_string procedure is not dealing with user input validation.
+  shift_string procedure is not dealing with user input validation.
 """
 def shift_string( text:str , shift:int ):
   alphabet = 'ABCDEFGHIGKLMNOPQRSTUVWXYZ'
@@ -25,7 +33,7 @@ def shift_string( text:str , shift:int ):
 
         res += alphabet[ enc_index ]
       else:
-        res += char
+        res += char # If char is not in the alphabet, keeps it unchanged
     return res
 
 """
@@ -36,6 +44,9 @@ class KeyOutOfRange( Exception ):
       self.message = f"Key value of {key} is out of range! It must be between 0 and 26."
       super().__init__( self.message )
 
+##############################
+# MAIN MENU CHOICE FUNCTIONS
+##############################
 """
   Procedure to handle encryption choice dialog and input validation
 """
