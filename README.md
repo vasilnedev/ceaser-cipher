@@ -37,3 +37,9 @@ Enter the message to decrypt.
 > QIIX QI FC XLI VSWI FYWLIW XSRMKLX.
 
 MEET ME BY THE ROSE BUSHES TONIGHT.
+
+## Ceaser cipher cracker
+The program can hack messages encrypted with the Caesar cipher, even if the key is unknown. There are only 26 possible keys for the Caesar cipher, so a computer can easily try all possible decryptions and display the results to the user. In cryptography, we call this technique a brute-force attack.
+
+## Additional task
+The brute-force code-cracker will use English dictionary words to guess the best key.
